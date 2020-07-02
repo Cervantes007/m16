@@ -5,6 +5,12 @@ on:
     branches: [master]
 
 jobs:
+  services:
+    mongodb:
+      image: mongo:4.2.8-bionic
+      ports:
+        - 27017:27017
+
   build:
     runs-on: ubuntu-latest
     strategy:
