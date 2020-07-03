@@ -1,5 +1,5 @@
 module.exports = {
-  base: '/m16/',
+  base: !process.env.CI || (process.env.CI && process.env.CI.toLowerCase() !== 'true') ? '/' : '/m16/',
   title: 'M16',
   description: 'Mongodb ODM for TypeScript and JavaScript (ES2015+).',
   themeConfig: {
