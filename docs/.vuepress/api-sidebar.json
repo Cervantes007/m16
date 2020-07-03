@@ -1,0 +1,18 @@
+[
+  {
+    "title": "Classes",
+    "children": [
+      "classes/connection",
+      "classes/document",
+      "classes/model",
+      "classes/schema"
+    ]
+  },
+  {
+    "title": "Interfaces",
+    "children": [
+      "interfaces/createmodel",
+      "interfaces/modelmetadata"
+    ]
+  }
+]
