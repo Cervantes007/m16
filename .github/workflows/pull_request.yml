@@ -1,0 +1,30 @@
+name: PR
+
+on:
+  pull_request:
+    branches: [master, dev]
+
+jobs:
+  build:
+    services:
+      mongodb:
+        image: mongo:4.2.8-bionic
+        ports:
+          - 27017:27017
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node_version: ['12']
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Dependencies
+        run: yarn --frozen-lockfile
+
+      - name: Build
+        run: yarn build
+
+      - name: Test
+        run: yarn test:coverage
