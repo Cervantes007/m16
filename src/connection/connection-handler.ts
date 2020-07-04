@@ -1,5 +1,4 @@
 import { MongoClient } from 'mongodb';
-import { createModel } from '../model/model-factory';
 import { Connection } from './connection';
 
 /**
@@ -26,23 +25,3 @@ export const connect = async (connectionUrl: string, options = { useUnifiedTopol
 };
 
 export const close = () => __connection.close();
-
-export const model = (name: string, schema: any) => {
-  if (!__connection) {
-    connectFromEnvVariables(name);
-  }
-  return createModel({ name, schema, connection: __connection });
-};
-
-/**
- * Allow connecting from env variable M16_CONNECTION_STRING if provided.
- */
-const connectFromEnvVariables = (modelName: string) => {
-  const connString = process.env.M16_CONNECTION_STRING || '';
-  if (connString) {
-    console.log(`Database connect from process.env.OTTOMAN_CONNECTION_STRING`);
-    connect(connString);
-  } else {
-    throw new Error(`There isn't a connection available to create Model ${modelName}`);
-  }
-};

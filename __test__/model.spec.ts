@@ -1,10 +1,8 @@
-import { model } from '../src';
-
-test('test', async () => {
-  console.log('connected to mongodb');
-  const Documents = model('documents', {});
-  const result = await Documents.insertMany([{ a: 1 }, { a: 2 }, { a: 3 }]);
-  console.log(result);
-  const list = await Documents.find({ a: 3 });
-  console.log(list);
+import { Person } from './data/person';
+test('document.save', async () => {
+  const john = new Person({ name: 'John' });
+  const result = await john.save();
+  expect(john._id).toBe(result.insertedId);
+  const documents = await Person.find({ name: john.name });
+  expect(documents.length).toBeGreaterThan(0);
 });
