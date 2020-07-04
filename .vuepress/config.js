@@ -7,6 +7,7 @@ module.exports = {
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Connections', link: '/guides/connections.md' },
+      { text: 'BaseDocument', link: '/classes/BaseDocument.md' },
       { text: 'Github', link: 'https://github.com/cervantes007/m16.git' },
     ],
     sidebar: 'auto',
