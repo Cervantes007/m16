@@ -1,8 +1,7 @@
 import { connect, close } from '../src';
 
 beforeAll(async () => {
-  const url = 'mongodb://localhost:27017/ex';
-  await connect(url);
+  await connect('mongodb://localhost:27017/pets');
 });
 
 afterAll(async () => {

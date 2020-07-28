@@ -1,6 +1,6 @@
 {
   "name": "m16",
-  "version": "0.0.1",
+  "version": "0.0.0-semantically-released",
   "main": "lib/index.js",
   "types": "lib/types/index.d.ts",
   "scripts": {
@@ -8,21 +8,26 @@
     "build:test": "yarn build && yarn test",
     "commit": "git-cz",
     "docs": "yarn docs:generate && yarn docs:build",
+    "docs:dev": "yarn docs:generate && cp -r vuepress/. docs/ && vuepress dev docs",
     "docs:generate": "rimraf docs && typedoc",
-    "docs:build": "cp -r .vuepress/* docs/.vuepress && cp -r vuepress/* docs/ && vuepress build docs",
+    "docs:build": "cp -r vuepress/. docs/ && vuepress build docs",
     "docs:serve": "yarn docs && serve docs/.vuepress/dist",
-    "is:ready": "yarn lint && yarn build && yarn test:ready",
     "lint": "eslint --ignore-pattern '/lib/' '*/**/*.ts' --quiet --fix",
+    "semver": "semantic-release",
     "test": "jest --clearCache && jest -i",
     "test:coverage": "jest -i --coverage",
     "test:dev": "jest --watch",
     "test:ready": "jest --clearCache && jest -i --coverage"
   },
   "dependencies": {
-    "mongodb": "^3.5.9"
+    "class-validator": "^0.12.2",
+    "mongodb": "^3.5.9",
+    "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
-    "@types/jest": "^26.0.3",
+    "@semantic-release/changelog": "^5.0.1",
+    "@semantic-release/git": "^9.0.0",
+    "@types/jest": "26.0.7",
     "@types/mongodb": "^3.5.25",
     "@types/node": "^14.0.14",
     "@typescript-eslint/eslint-plugin": "^3.5.0",
@@ -30,7 +35,7 @@
     "@vuepress/plugin-back-to-top": "^1.5.2",
     "@vuepress/plugin-medium-zoom": "^1.5.2",
     "cz-conventional-changelog": "^3.2.0",
-    "eslint": "^7.3.1",
+    "eslint": "7.5.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.4",
     "husky": "^4.2.5",
@@ -39,11 +44,13 @@
     "prettier": "^2.0.5",
     "pretty-quick": "^2.0.1",
     "rimraf": "^3.0.2",
-    "ts-jest": "^26.1.1",
+    "semantic-release": "^17.1.1",
+    "ts-jest": "26.1.4",
     "typedoc": "^0.17.8",
     "typedoc-plugin-markdown": "^2.3.1",
-    "typescript": "^3.9.6",
-    "vuepress": "^1.5.2"
+    "typescript": "3.9.7",
+    "vuepress": "^1.5.2",
+    "vuepress-theme-default-prefers-color-scheme": "1.1.0"
   },
   "engines": {
     "node": ">=8.0.0"

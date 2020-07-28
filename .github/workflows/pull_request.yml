@@ -2,16 +2,10 @@ name: PR
 
 on:
   pull_request:
-    branches: [master, dev]
+    branches: [master]
 
 jobs:
   build:
-    services:
-      mongodb:
-        image: mongo:4.2.8-bionic
-        ports:
-          - 27017:27017
-
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -28,3 +22,6 @@ jobs:
 
       - name: Test
         run: yarn test:coverage
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
