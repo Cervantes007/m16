@@ -24,4 +24,4 @@ export const connect = async (connectionUrl: string, options = { useUnifiedTopol
   return connection;
 };
 
-export const close = () => __connection.close();
+export const close = () => __connection && __connection.close();
