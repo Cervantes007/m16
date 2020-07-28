@@ -8,5 +8,7 @@ module.exports = {
   rules: {
     'no-unused-labels': 2,
     'no-unused-vars': 2,
+    '@typescript-eslint/no-inferrable-types': 'off',
+    '@typescript-eslint/ban-ts-comment': 'off',
   },
 };
