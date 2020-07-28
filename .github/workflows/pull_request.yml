@@ -6,6 +6,11 @@ on:
 
 jobs:
   build:
+    mongodb:
+      image: mongo:4.2.8-bionic
+      ports:
+        - 27017:27017
+
     runs-on: ubuntu-latest
     strategy:
       matrix:
