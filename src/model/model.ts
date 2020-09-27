@@ -39,18 +39,18 @@ export type clean<T> = ExcludeMatchingProperties<OmitGetters<T>, Function>;
 export class Model<T, K = clean<T>> {
   constructor(public doc: new (data) => T) {}
 
-  find(query?: FilterQuery<clean<T>>, options?: FindOneOptions): Promise<T[]> {
+  find(query?: FilterQuery<clean<T>>, options?: FindOneOptions<any>): Promise<T[]> {
     return find(getModelMetadata(this.doc))(query, options);
   }
 
-  findOne(query?: FilterQuery<K>, options?: FindOneOptions): Promise<T> {
+  findOne(query?: FilterQuery<K>, options?: FindOneOptions<any>): Promise<T> {
     return findOne(getModelMetadata(this.doc))(query, options);
   }
 
   findOneAndUpdate(
     query: FilterQuery<K>,
     update: UpdateQuery<K> | Partial<K>,
-    options?: FindOneAndUpdateOption,
+    options?: FindOneAndUpdateOption<any>,
   ): Promise<FindAndModifyWriteOpResultObject<T>> {
     return findOneAndUpdate(getModelMetadata(this.doc))(query, update, options);
   }
@@ -58,14 +58,14 @@ export class Model<T, K = clean<T>> {
   findOneAndReplace(
     filter: FilterQuery<K>,
     doc: K,
-    options?: FindOneAndReplaceOption,
+    options?: FindOneAndReplaceOption<any>,
   ): Promise<FindAndModifyWriteOpResultObject<K>> {
     return findOneAndReplace(getModelMetadata(this.doc))(filter, doc, options);
   }
 
   findOneAndDelete(
     filter: FilterQuery<K>,
-    options?: FindOneAndDeleteOption,
+    options?: FindOneAndDeleteOption<any>,
   ): Promise<FindAndModifyWriteOpResultObject<K>> {
     return findOneAndDelete(getModelMetadata(this.doc))(filter, options);
   }
