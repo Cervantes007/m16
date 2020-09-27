@@ -1,12 +1,14 @@
-import { prop, length, document, Document, defualtValue, model, pre } from '../../src';
+import { document, Document, defualtValue, model, pre } from '../../src';
+import { IsNumber, IsString, Length } from 'class-validator';
 
 @document()
 export class Dog extends Document {
-  @prop(length(8))
+  @IsString()
+  @Length(8)
   @defualtValue('Chiguagua')
   name: string;
 
-  @prop()
+  @IsNumber()
   @defualtValue(14)
   age: number;
 
