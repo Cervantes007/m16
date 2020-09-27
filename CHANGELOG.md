@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/Cervantes007/m16/compare/v1.0.0...v1.1.0) (2020-09-27)
+
+
+### Features
+
+* **document:** ensure ObjectId ([15fb04c](https://github.com/Cervantes007/m16/commit/15fb04c696794de18a479c421d2da7e8429386d4))
+
 # 1.0.0 (2020-07-28)
 
 
