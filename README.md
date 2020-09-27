@@ -6,25 +6,16 @@ Mongodb ODM for TypeScript.
 
 
 ```typescript
-import { Document, document, connect, prop } from 'm-16';
+import { Document, document, connect } from 'm-16';
+import { IsNotEmpty } from "class-validator";
+
 connect('mongodb://localhost:27017/test');
 
 @document()
 export class Dog extends Document {
-  @prop() name: string;
+  @IsNotEmpty() name: string;
 }
 
 const dog = new Dog({name:'Pluto'});
 await dog.save();
-```
-
-
-```typescript
-const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/test', {useNewUrlParser: true, useUnifiedTopology: true});
-
-const Cat = mongoose.model('Cat', { name: String });
-
-const kitty = new Cat({ name: 'Zildjian' });
-kitty.save().then(() => console.log('meow'));
 ```
