@@ -1,6 +1,8 @@
 import { Collection, ObjectId } from 'mongodb';
 import { validateOrReject } from 'class-validator';
 import { getModelMetadata } from '../utils';
+import { nonenumerable } from '../utils/noenumarable';
+import { ensureId } from '../utils/unsure-id';
 
 interface HooksTypes {
   save?: ((doc) => Document)[];
@@ -26,6 +28,8 @@ export abstract class Document {
   private post: HooksTypes = {};
 
   constructor(data) {
+    nonenumerable(this, 'pre');
+    nonenumerable(this, 'post');
     this._applyData(data);
   }
 
@@ -35,6 +39,7 @@ export abstract class Document {
     for (const key in doc) {
       this[key] = doc[key];
     }
+    ensureId(this);
   }
 
   /**
@@ -56,6 +61,7 @@ export abstract class Document {
   }
 
   async save(options = {}) {
+    ensureId(this);
     await this.validate();
     const data = this.toObject();
     const _id = data['_id'];
@@ -71,6 +77,7 @@ export abstract class Document {
       }
       result = await this._collection.insertOne(data, options);
       this._id = result.insertedId;
+      ensureId(this);
     }
     return result;
   }
