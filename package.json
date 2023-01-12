@@ -20,7 +20,7 @@
     "test:ready": "jest --clearCache && jest -i --coverage"
   },
   "dependencies": {
-    "class-validator": "^0.12.2",
+    "class-validator": "^0.14.0",
     "mongodb": "^3.6.2",
     "reflect-metadata": "^0.1.13"
   },
